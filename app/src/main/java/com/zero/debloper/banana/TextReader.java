@@ -48,6 +48,8 @@ public class TextReader {
                     };
 
                     mTextToSpeech.setOnUtteranceProgressListener(mUtteranceProgressListener);
+                    mMaxSpeechInputLength = mTextToSpeech.getMaxSpeechInputLength();
+                    Log.v(TAG, "Max Speech Input Length is " + mMaxSpeechInputLength);
                     check();
                     Log.d(TAG, "TextReader initialized successfully.");
                 } else {
@@ -82,15 +84,14 @@ public class TextReader {
     public void read(String text) {
         int stringLength = text.length();
         Log.v(TAG, "String Length is " + stringLength);
-        mMaxSpeechInputLength = mTextToSpeech.getMaxSpeechInputLength();
-        Log.v(TAG, "Max Speech Input Length is " + mMaxSpeechInputLength);
 
         if (stringLength > mMaxSpeechInputLength) {
             // Divide the string in different pieces.
         }
 
         HashMap<String, String> params = new HashMap();
-        String utteranceId = "utteranceId-" + (mSpeechCount % 10);
+        mSpeechCount = mSpeechCount % 10;
+        String utteranceId = "utteranceId-" + mSpeechCount;
         mSpeechCount++;
         params.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, utteranceId);
         mTextToSpeech.speak(text, TextToSpeech.QUEUE_ADD, params);
