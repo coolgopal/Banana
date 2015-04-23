@@ -48,7 +48,7 @@ public class TextReader {
                     };
 
                     mTextToSpeech.setOnUtteranceProgressListener(mUtteranceProgressListener);
-                    mMaxSpeechInputLength = mTextToSpeech.getMaxSpeechInputLength();
+                    //mMaxSpeechInputLength = mTextToSpeech.getMaxSpeechInputLength();
                     Log.v(TAG, "Max Speech Input Length is " + mMaxSpeechInputLength);
                     check();
                     Log.d(TAG, "TextReader initialized successfully.");
@@ -94,6 +94,7 @@ public class TextReader {
         String utteranceId = "utteranceId-" + mSpeechCount;
         mSpeechCount++;
         params.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, utteranceId);
+        // TODO: Use latest api for lollipop
         mTextToSpeech.speak(text, TextToSpeech.QUEUE_ADD, params);
     }
 
