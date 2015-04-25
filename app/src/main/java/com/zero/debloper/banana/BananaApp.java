@@ -1,4 +1,8 @@
+package com.zero.debloper.banana;
+
 import android.app.Application;
+
+import com.zero.debloper.banana.R;
 
 import org.acra.ACRA;
 import org.acra.ReportField;
@@ -10,8 +14,10 @@ import org.acra.annotation.ReportsCrashes;
  */
 @ReportsCrashes(formKey = "", // will not be used
 mailTo = "care.banana.zero@gmail.com",
-mode = ReportingInteractionMode.SILENT,
+mode = ReportingInteractionMode.TOAST,
+resToastText = R.string.crash_toast_text,
 customReportContent = { ReportField.APP_VERSION_CODE, ReportField.APP_VERSION_NAME, ReportField.ANDROID_VERSION, ReportField.PHONE_MODEL, ReportField.CUSTOM_DATA, ReportField.STACK_TRACE, ReportField.LOGCAT })
+
 public class BananaApp extends Application {
     @Override
     public void onCreate() {
